@@ -1,0 +1,23 @@
+{
+  "name": "api-automation-using-cypress",
+  "version": "1.0.0",
+  "description": "api-automation-using-cypress",
+  "main": "index.js",
+  "scripts": {
+    "cyr": "cypress run",
+    "cyo": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teenvarghese810/API-Automation-using-Cypress-Javascript.git"
+  },
+  "author": "Teena Varghese",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teenvarghese810/API-Automation-using-Cypress-Javascript.git/issues"
+  },
+  "homepage": "https://github.com/teenvarghese810/API-Automation-using-Cypress-Javascript.git#readme",
+  "devDependencies": {
+    "cypress": "^8.7.0"
+  }
+}

@@ -6,8 +6,7 @@ const ENDPOINTS = {
   register_encPwd_false: '/RegisterPartialPatient?hashAndEncryptPassword="true"',
   register_encEmail: '/RegisterPartialPatient?encryptEmailAddress="true"',
   register_encEmail_false: '/RegisterPartialPatient?encryptEmailAddress="true"',
-  register_allParam_true: '/RegisterPartialPatient?encryptEmailAddress="true"&&allowDuplicateEmail="true"&&hashAndEncryptPassword="true"',
-  register_allParam_dupEmail: '/RegisterPartialPatient?encryptEmailAddress="true"&&allowDuplicateEmail="false"&&hashAndEncryptPassword="true"',
+  register_allParam_dupEmail: '/RegisterPartialPatient?encryptEmailAddress="true"&&allowDuplicateEmail="true"&&hashAndEncryptPassword="true"',
 };
 
 export default ENDPOINTS;

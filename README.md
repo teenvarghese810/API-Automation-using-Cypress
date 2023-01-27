@@ -4,6 +4,9 @@
 
 This is an API test automation project using Cypress.
 
+Cypress is a next generation front end testing tool built for the modern web .This enables you to write faster, easier and more reliable tests.
+https://www.cypress.io/
+
 The test API endpoint used for this project is /api/v1/NhsRegistration/RegisterPartialPatient and POST method is automated to validate against event IDs 200, 400, 401, 403 and 409.
 
 ## Setup

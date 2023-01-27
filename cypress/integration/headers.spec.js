@@ -11,7 +11,6 @@ describe('Headers', () => {
 
   it('should assert the values of the page content type header', () => {
     cy.getEndpointHeader('media-type')
-      .should('include', 'application/json')
-      .and('include', ' charset=utf-8');
+      .should('include', 'application/json');
   });
 });

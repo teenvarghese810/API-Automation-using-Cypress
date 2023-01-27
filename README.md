@@ -2,7 +2,7 @@
 
 ## Summary
 
-This is an API test automation project using Cypress.
+This is an API test automation framework developed using Cypress.
 
 Cypress is a next generation front end testing tool built for the modern web .This enables you to write faster, easier and more reliable tests.
 https://www.cypress.io/
@@ -24,7 +24,7 @@ In order to run this project follow these simple steps:
 - Then download cypress using the `npm install cypress --save-dev` command;
 - Integration folder contains Cypress tests
 - Edit the "cypress.json" file to add baseURL for all the tests
-- Run the tests using `npx cypress open` command
+- Run the tests using `npx cypress open` command (Run E2E testing from Chrome).
 
 
 

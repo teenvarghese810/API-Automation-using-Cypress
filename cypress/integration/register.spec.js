@@ -23,7 +23,7 @@ describe('Partial Patient Register API', () => {
       });
     });
 
-    it('TC02. Should not allow user to register with an already registered EmailID', () => {
+    it('TC02. Should allow user to register with an already registered EmailID', () => {
       cy.request({
         method:'POST',
         url: ENDPOINTS.register_dupEmail,
@@ -32,8 +32,16 @@ describe('Partial Patient Register API', () => {
         },
         body: REGISTER.PATIENT_WITH_VALID_DETAILS,
       }).then((res) => {
-        expect(res.status).to.eq(409);
-        expect(res.message).to.eq('Conflict - Email ID already exists');
+        expect(res.status).to.eq(200);
+        expect(res.message).to.eq('Success');
+        expect(res.body.responseCode).to.eq(responseCode);
+        expect(res.body.message).to.eq(message);
+        expect(res.body.type).to.eq(type);
+        expect(res.body.value).to.eq('value retrieved from response');
+       /*  Make a DB connection, retrieve the data (EmailID and Password) from DB and validate whether the data encrypted 
+       as specified by query parameters hashAndEncryptPassword and encryptEmailAddress */
+        expect(db.table.emailID).to.eq("Unencrypted Email ID")
+        expect(db.table.password).to.eq("UnEncrypted Password")
       });
     });
 
@@ -103,7 +111,7 @@ describe('Partial Patient Register API', () => {
       });
     });
 
-    it('TC03. Should register a new patient successfully with duplicate Email', () => {
+    it('TC03. Should not allow patient to register with duplicate Email', () => {
       cy.request({
         method:'POST',
         url: ENDPOINTS.register_dupEmail_false,
@@ -112,16 +120,8 @@ describe('Partial Patient Register API', () => {
         },
         body: REGISTER.PATIENT_WITH_VALID_DETAILS,
       }).then((res) => {
-        expect(res.status).to.eq(200);
-        expect(res.message).to.eq('Success');
-        expect(res.body.responseCode).to.eq(responseCode);
-        expect(res.body.message).to.eq(message);
-        expect(res.body.type).to.eq(type);
-        expect(res.body.value).to.eq('value retrieved from response');
-       /*  Make a DB connection, retrieve the data (EmailID and Password) from DB and validate whether the data encrypted 
-       as specified by query parameters hashAndEncryptPassword and encryptEmailAddress */
-        expect(db.table.emailID).to.eq("Encrypted Email ID")
-        expect(db.table.password).to.eq("Encrypted Password")
+        expect(res.status).to.eq(409);
+        expect(res.message).to.eq('Conflict');
       });
     });
 
@@ -142,7 +142,7 @@ describe('Partial Patient Register API', () => {
         expect(res.body.value).to.eq('value retrieved from response');
        /*  Make a DB connection, retrieve the data (EmailID and Password) from DB and validate whether the data encrypted 
        as specified by query parameters hashAndEncryptPassword and encryptEmailAddress */
-        expect(db.table.emailID).to.eq("Encrypted Email ID")
+        expect(db.table.emailID).to.eq("Unencrypted Email ID")
         expect(db.table.password).to.eq("Encrypted Password")
       });
     });
@@ -164,8 +164,8 @@ describe('Partial Patient Register API', () => {
         expect(res.body.value).to.eq('value retrieved from response');
        /*  Make a DB connection, retrieve the data (EmailID and Password) from DB and validate whether the data encrypted 
        as specified by query parameters hashAndEncryptPassword and encryptEmailAddress */
-        expect(db.table.emailID).to.eq("Encrypted Email ID")
-        expect(db.table.password).to.eq("Encrypted Password")
+        expect(db.table.emailID).to.eq("Unencrypted Email ID")
+        expect(db.table.password).to.eq("Unencrypted Password")
       });
     });
 
@@ -187,7 +187,7 @@ describe('Partial Patient Register API', () => {
        /*  Make a DB connection, retrieve the data (EmailID and Password) from DB and validate whether the data encrypted 
        as specified by query parameters hashAndEncryptPassword and encryptEmailAddress */
         expect(db.table.emailID).to.eq("Encrypted Email ID")
-        expect(db.table.password).to.eq("Encrypted Password")
+        expect(db.table.password).to.eq("Unencrypted Password")
       });
     });
 
@@ -208,12 +208,12 @@ describe('Partial Patient Register API', () => {
         expect(res.body.value).to.eq('value retrieved from response');
        /*  Make a DB connection, retrieve the data (EmailID and Password) from DB and validate whether the data encrypted 
        as specified by query parameters hashAndEncryptPassword and encryptEmailAddress */
-        expect(db.table.emailID).to.eq("Encrypted Email ID")
-        expect(db.table.password).to.eq("Encrypted Password")
+        expect(db.table.emailID).to.eq("Unencrypted Email ID")
+        expect(db.table.password).to.eq("Unencrypted Password")
       });
     });
 
-    it('TC08.should register a new patient successfully with an existing EmailID and with encrypted EmailID and Password', () => {
+    it('TC08.Should register a new patient successfully with an existing EmailID and with encrypted EmailID and Password', () => {
       cy.request({
         method:'POST',
         url: ENDPOINTS.register,
@@ -235,7 +235,7 @@ describe('Partial Patient Register API', () => {
       });
     });
 
-    it('TC09.should register a new patient successfully with a new EmailID and without encrypting EmailID and Password', () => {
+    it('TC09. Should not allow patient to register with duplicate EmailID', () => {
       cy.request({
         method:'POST',
         url: ENDPOINTS.register,
@@ -244,17 +244,9 @@ describe('Partial Patient Register API', () => {
         },
         body: REGISTER.PATIENT_WITH_VALID_DETAILS,
       }).then((res) => {
-        expect(res.status).to.eq(200);
-        expect(res.message).to.eq('Success');
-        expect(res.body.responseCode).to.eq(responseCode);
-        expect(res.body.message).to.eq(message);
-        expect(res.body.type).to.eq(type);
-        expect(res.body.value).to.eq('value retrieved from response');
-       /*  Make a DB connection, retrieve the data (EmailID and Password) from DB and validate whether the data encrypted 
-       as specified by query parameters hashAndEncryptPassword and encryptEmailAddress */
-        expect(db.table.emailID).to.eq("Encrypted Email ID");
-        expect(db.table.password).to.eq("Encrypted Password");
-      })
+        expect(res.status).to.eq(409);
+        expect(res.message).to.eq('Conflict');
+      });
     });
 
   });
